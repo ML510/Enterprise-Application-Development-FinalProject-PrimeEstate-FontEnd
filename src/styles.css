@@ -1,0 +1,180 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "tailwindcss";
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.hero-overlay {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.chat-shadow {
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1), 0 0 40px 0 rgba(117, 38, 157, 0.1);
+}
+
+@layer utilities {
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+.map-container {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuA8D8jVA61ZBG3qWQmOkrs3VnqTMwlX71Nt69kXb8OEPrQfQfBw4FxzPFDw5IZ6tBjmDOxOBqCpyz0XLSKYD1j9H4Ivhu9pLppnMghGes6O-nVTxDWRPRBqcy42bWkIZfxLytn0y7UGt0zExFs3k2YUYEP73dSj7ugZ04Udcei7dc4Fwx2qhtTHbLfEbGeiVuqPk0RB-VdCSadfxKMdTzxTD3k4lVACUqflILtBKYEeQFoYeBCYKF0fru7UU_UTbEnWaG1YoGgywIRt);
+    background-color: #e5e7eb;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(20%) contrast(110%);
+}
+
+.card-dark-revenue {
+    background-color: #1e1226;
+    color: #ffffff;
+}
+
+.card-dark-revenue .text-muted {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+@layer utilities {
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
+
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.map-bg {
+    background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8D8jVA61ZBG3qWQmOkrs3VnqTMwlX71Nt69kXb8OEPrQfQfBw4FxzPFDw5IZ6tBjmDOxOBqCpyz0XLSKYD1j9H4Ivhu9pLppnMghGes6O-nVTxDWRPRBqcy42bWkIZfxLytn0y7UGt0zExFs3k2YUYEP73dSj7ugZ04Udcei7dc4Fwx2qhtTHbLfEbGeiVuqPk0RB-VdCSadfxKMdTzxTD3k4lVACUqflILtBKYEeQFoYeBCYKF0fru7UU_UTbEnWaG1YoGgywIRt');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6) contrast(1.2);
+}
+
+.glass-panel {
+    background: rgba(18, 10, 23, 0.85);
+    backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.price-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #75269d;
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(117, 38, 157, 0.5);
+}
+
+.price-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #75269d;
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.heatmap-gradient {
+    background: radial-gradient(circle at 30% 40%, rgba(117, 38, 157, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(117, 38, 157, 0.2) 0%, transparent 35%),
+        radial-gradient(circle at 50% 20%, rgba(117, 38, 157, 0.15) 0%, transparent 30%);
+}
+
+.map-bg {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuA8D8jVA61ZBG3qWQmOkrs3VnqTMwlX71Nt69kXb8OEPrQfQfBw4FxzPFDw5IZ6tBjmDOxOBqCpyz0XLSKYD1j9H4Ivhu9pLppnMghGes6O-nVTxDWRPRBqcy42bWkIZfxLytn0y7UGt0zExFs3k2YUYEP73dSj7ugZ04Udcei7dc4Fwx2qhtTHbLfEbGeiVuqPk0RB-VdCSadfxKMdTzxTD3k4lVACUqflILtBKYEeQFoYeBCYKF0fru7UU_UTbEnWaG1YoGgywIRt);
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%) brightness(0.9) contrast(1.1);
+    opacity: 0.6;
+}
+
+/* --------------------- */
+
+@theme {
+    /* Brand Colors */
+    --color-primary: #75269d;
+    --color-primary-hover: #5e1e7d;
+    --color-sidebar-bg: #120a17;
+    --color-sidebar-surface: #1e1226;
+    --color-background-light: #f8f9fc;
+    --color-background-dark: #0f0f11;
+    --color-card-bg: #ffffff;
+
+    /* Fonts */
+    --font-sans: "Inter", ui-sans-serif, system-ui;
+    --font-display: "Manrope", ui-sans-serif, system-ui;
+
+    /* Shadow for the Logo Shine */
+    --shadow-glow: 0 0 15px rgba(117, 38, 157, 0.4);
+    --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Global Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Custom Luxury Classes */
+@utility glass-panel {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+@utility map-container {
+    background-color: #e5e7eb;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(20%) contrast(110%);
+}
