@@ -1,0 +1,35 @@
+.favorite-btn {
+	background: rgba(255, 255, 255, 0.2);
+	color: #ffffff;
+	border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.favorite-btn:hover {
+	background: rgba(255, 255, 255, 0.95);
+	color: #e11d48;
+}
+
+.favorite-btn--active {
+	background: rgba(225, 29, 72, 0.15);
+	color: #e11d48;
+	border-color: rgba(225, 29, 72, 0.45);
+	box-shadow: 0 0 0 6px rgba(225, 29, 72, 0.12);
+}
+
+.favorite-pop {
+	animation: favorite-pop 0.28s ease-out;
+}
+
+@keyframes favorite-pop {
+	0% {
+		transform: scale(0.85);
+	}
+
+	60% {
+		transform: scale(1.15);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}

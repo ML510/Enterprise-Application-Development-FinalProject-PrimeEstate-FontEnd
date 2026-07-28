@@ -1,0 +1,99 @@
+<section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div class="gap-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Featured Collections</h2>
+                <p class="text-slate-500 text-lg max-w-xl">Curated exclusively for high-net-worth individuals.
+                    Minimalist design, maximum return.</p>
+            </div>
+            <div class="flex p-1 bg-gray-100 dark:bg-slate-800 rounded-xl">
+                <button
+                    class="px-6 py-2.5 rounded-lg font-bold text-sm shadow-sm transition-all"
+                    [class.bg-white]="selectedFilter === 'off_plan'"
+                    [class.dark:bg-slate-700]="selectedFilter === 'off_plan'"
+                    [class.text-primary]="selectedFilter === 'off_plan'"
+                    [class.dark:text-white]="selectedFilter === 'off_plan'"
+                    [class.text-slate-500]="selectedFilter !== 'off_plan'"
+                    [class.dark:text-slate-400]="selectedFilter !== 'off_plan'"
+                    [class.font-semibold]="selectedFilter !== 'off_plan'"
+                    [class.hover:text-slate-900]="selectedFilter !== 'off_plan'"
+                    [class.dark:hover:text-white]="selectedFilter !== 'off_plan'"
+                    (click)="loadOffPlanCollections()">Off-Plan</button>
+                <button
+                    class="px-6 py-2.5 rounded-lg font-bold text-sm shadow-sm transition-all"
+                    [class.bg-white]="selectedFilter === 'ready'"
+                    [class.dark:bg-slate-700]="selectedFilter === 'ready'"
+                    [class.text-primary]="selectedFilter === 'ready'"
+                    [class.dark:text-white]="selectedFilter === 'ready'"
+                    [class.text-slate-500]="selectedFilter !== 'ready'"
+                    [class.dark:text-slate-400]="selectedFilter !== 'ready'"
+                    [class.font-semibold]="selectedFilter !== 'ready'"
+                    [class.hover:text-slate-900]="selectedFilter !== 'ready'"
+                    [class.dark:hover:text-white]="selectedFilter !== 'ready'"
+                    (click)="loadReadyCollections()">Ready</button>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            <div *ngFor="let collection of apiresponse.data" class="group relative bg-white  rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300 border border-gray-100 ">
+                <div class="relative h-72 overflow-hidden">
+                    <div class="absolute top-4 right-4 z-10">
+                        <button
+                            type="button"
+                            (click)="fav(collection.id)"
+                            [attr.aria-label]="isFavorite(collection.id) ? 'Remove from favorites' : 'Add to favorites'"
+                            class="w-10 h-10 rounded-full backdrop-blur flex items-center justify-center transition-all duration-300"
+                            [class.favorite-btn]="true"
+                            [class.favorite-btn--active]="isFavorite(collection.id)"
+                            [class.favorite-pop]="lastAnimatedFavoriteId === collection.id">
+                            <span class="material-symbols-outlined text-xl">favorite</span>
+                        </button>
+                    </div>
+                    <img alt="Sleek modern kitchen interior design"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        data-alt="Sleek modern kitchen interior design"
+                        src="{{collection.url}}"/>
+                    <div
+                        class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-60">
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <span class="text-primary font-bold text-xs uppercase tracking-wide mb-1 block">{{collection.state}}</span>
+                            <h3
+                                class="text-2xl font-bold text-slate-900 group-hover:text-primary transition-colors">
+                                {{collection.name}}
+                            </h3>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-slate-500 mb-1">Starting from</p>
+                            <p class="text-lg font-bold text-slate-900" [attr.aria-label]="'Starting price: ' + formatPrice(collection.price)">{{formatPrice(collection.price)}}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6 text-sm text-slate-600 dark:text-slate-400 mb-6">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">bed</span>
+                            <span>{{collection.minBedCount}}-{{collection.maxBedCount}} Beds</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">square_foot</span>
+                            <span>{{collection.sqft | number:'1.0-0'}} sqft</span>
+                        </div>
+                    </div>
+                    <a [routerLink]="['/property', collection.id]"
+                        class="inline-flex w-full max-w-full items-center justify-center rounded-xl border border-gray-200 px-4 py-3.5 text-sm font-bold text-slate-600 transition-all hover:border-primary hover:bg-primary hover:text-white">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="mt-16 text-center">
+            <a class="inline-flex items-center justify-center h-14 px-10 rounded-full bg-slate-900 text-white hover:bg-primary transition-all font-bold tracking-wide shadow-lg"
+                href="#">
+                Browse All Properties
+                <span class="material-symbols-outlined ml-2 text-sm">arrow_forward</span>
+            </a>
+        </div>
+    </div>
+</section>
