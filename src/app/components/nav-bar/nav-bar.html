@@ -1,0 +1,34 @@
+<header 
+    class="fixed top-0 w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div routerLink="/" class="flex items-center gap-3" style="cursor: pointer;">
+            <button
+                *ngIf="!isRootPath()"
+                (click)="goBack(); $event.stopPropagation()"
+                style="cursor: pointer;"
+                class="flex items-center justify-center h-10 w-10 rounded-full hover:bg-slate-100 transition-colors text-slate-700">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </button>
+
+            <div class="w-8 h-8 text-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-3xl!">apartment</span>
+            </div>
+            
+            <h1 class="text-xl font-bold tracking-tight text-[#000000]">PrimeState</h1>
+        </div>
+        
+        <div class="flex items-center gap-3">
+            <button *ngIf="isRootPath()" routerLink="/login" 
+            class=" sm:flex items-center justify-center h-10 px-5 rounded-full border border-slate-400 text-slate-700 text-sm font-bold hover:bg-slate-100 transition-colors">
+                Admin
+            </button>
+            <button (click)="changeLanguage()"
+                class="flex items-center justify-center h-10 px-4 rounded-full bg-slate-100 text-slate-700 text-sm font-bold hover:bg-slate-200 transition-colors">
+                En / Ar
+            </button>
+
+            
+            
+        </div>
+    </div>
+</header>
