@@ -1,0 +1,79 @@
+<section class="mx-auto w-full max-w-2xl rounded-2xl border border-slate-100 bg-white p-6 shadow-soft">
+  <div class="mb-6 flex items-start justify-between gap-4">
+    <div>
+      <h2 class="text-2xl font-bold text-slate-900">Arrange Viewing</h2>
+      <p class="mt-1 text-sm text-slate-500">Request a private viewing for <span class="font-semibold text-slate-700">{{ propertyName || 'this property' }}</span>.</p>
+    </div>
+    <button type="button" [disabled]="isSubmitting" (click)="close()" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:bg-slate-50 hover:text-slate-700 disabled:cursor-not-allowed disabled:opacity-50">
+      <span class="material-symbols-outlined text-lg">close</span>
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+    <label class="flex flex-col gap-2">
+      <span class="text-xs font-semibold uppercase tracking-wide text-slate-600">Full Name *</span>
+      <input [(ngModel)]="viewing.fullName" name="fullName" type="text" class="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none transition focus:border-primary" placeholder="Your full name" />
+    </label>
+
+    <label class="flex flex-col gap-2">
+      <span class="text-xs font-semibold uppercase tracking-wide text-slate-600">Email *</span>
+      <input [(ngModel)]="viewing.email" name="email" type="email" class="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none transition focus:border-primary" placeholder="you@example.com" />
+      @if (hasEmailError()) {
+        <span class="text-xs font-medium text-red-600">Enter a valid email address.</span>
+      }
+    </label>
+
+    <label class="flex flex-col gap-2">
+      <span class="text-xs font-semibold uppercase tracking-wide text-slate-600">Phone *</span>
+      <input [(ngModel)]="viewing.phone" name="phone" type="tel" class="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none transition focus:border-primary" placeholder="+971 50 000 0000" />
+      @if (hasPhoneError()) {
+        <span class="text-xs font-medium text-red-600">Enter a valid phone number.</span>
+      }
+    </label>
+
+    <label class="flex flex-col gap-2">
+      <span class="text-xs font-semibold uppercase tracking-wide text-slate-600">Preferred Date *</span>
+      <input [(ngModel)]="viewing.preferredDate" name="preferredDate" type="date" class="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none transition focus:border-primary" />
+    </label>
+
+    <label class="flex flex-col gap-2 md:col-span-2">
+      <span class="text-xs font-semibold uppercase tracking-wide text-slate-600">Preferred Time *</span>
+      <input [(ngModel)]="viewing.preferredTime" name="preferredTime" type="time" step="1" class="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none transition focus:border-primary" />
+    </label>
+
+    <label class="flex flex-col gap-2 md:col-span-2">
+      <span class="text-xs font-semibold uppercase tracking-wide text-slate-600">Note</span>
+      <textarea [(ngModel)]="viewing.note" name="note" rows="4" class="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none transition focus:border-primary" placeholder="Any specific request for your viewing?"></textarea>
+    </label>
+
+    <div class="md:col-span-2 mt-1 flex flex-wrap gap-3">
+      <button type="button" [disabled]="isSubmitting" (click)="submit()" class="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-70">
+        {{ isSubmitting ? 'Sending...' : 'Send Request' }}
+      </button>
+      <button type="button" [disabled]="isSubmitting" (click)="close()" class="rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60">Cancel</button>
+    </div>
+
+    @if (formErrorMessage) {
+      <p class="md:col-span-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">{{ formErrorMessage }}</p>
+    }
+
+    @if (successMessage) {
+      <p class="md:col-span-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700">{{ successMessage }}</p>
+    }
+  </div>
+</section>
+
+@if (showSuccessPopup) {
+  <div class="fixed inset-0 z-60 flex items-center justify-center bg-slate-900/50 p-4">
+    <div class="w-full max-w-sm rounded-2xl border border-emerald-200 bg-white p-6 shadow-2xl">
+      <div class="mb-4 flex items-center gap-3">
+        <span class="material-symbols-outlined text-emerald-600">check_circle</span>
+        <h3 class="text-lg font-bold text-slate-900">Request Sent</h3>
+      </div>
+      <p class="mb-5 text-sm text-slate-600">{{ successMessage }}</p>
+      <button type="button" (click)="closeSuccessPopup()" class="w-full rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-hover">
+        OK
+      </button>
+    </div>
+  </div>
+}
