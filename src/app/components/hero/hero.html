@@ -1,0 +1,118 @@
+<section class="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden -mt-8">
+    <div class="absolute inset-0 w-full h-full">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-IvmusndjtuEjchhJQvdf-VRjVmtuE1tXROTtzCyi3rNE4uSovKslLwvsuA2RWMo5RZY6p6jVL8kCFxUq5oWIy23-PAkFZpcsG9crBSYHqXLDzzukt4tX2EB94sq2gFh_39mQp5raq-zaeG4xdBIdh5iP-vearkDqaUZ_7w9PUiHNLketucxbiKlCertTHWE1AN263pe0AGKQqtmNw8bQL_8bYsM0hD9CWjTqc_NUY2QiHfdYbiLzZsMb9qwj-NS1gZ6uudMsKst6"
+            alt="Dubai Skyline" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black/25 dark:bg-black/40"></div>
+    </div>
+
+    <div class="relative z-20 w-full max-w-7xl px-6 flex flex-col items-center text-center">
+
+        <h1
+            class="text-white text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 drop-shadow-xl max-w-4xl leading-tight">
+            Find Your <span
+                class="relative text-transparent bg-clip-text bg-linear-to-r from-white via-slate-200 to-slate-400 drop-shadow-[0_16px_12px_rgba(2,1,0,0.10)]">Sanctuary</span>
+            in UAE
+        </h1>
+
+        <p class="text-white/90 text-lg md:text-xl font-medium mb-8 md:mb-12 max-w-2xl drop-shadow-md">
+            Lightning-fast search for the finest properties. Experience the pinnacle of modern living with PrimeState.
+        </p>
+
+
+        <div
+            class="w-full max-w-5xl glass-panel p-3 md:p-4 rounded-3xl shadow-2xl ring-1 ring-white/20 transform transition-all hover:scale-[1.005]">
+            <div class="flex flex-col lg:flex-row items-center gap-3">
+                
+                <div class="relative w-full h-16 lg:flex-1">
+                    <div class="absolute left-0 top-0 w-14 h-16 flex items-center justify-center text-primary pointer-events-none">
+                        <span class="material-symbols-outlined leading-none!">search</span>
+                    </div>
+                    <input type="text" placeholder="City, Community or Building..."
+                        class="w-full h-16 pl-14 pr-4 bg-gray-50 border-0 focus:ring-2 focus:ring-primary/20 text-slate-900 placeholder-slate-400 font-semibold rounded-2xl transition-all"
+                        [value]="searchName"
+                        (input)="searchName = $any($event.target).value"/>
+                </div>
+
+                <div class="relative w-full lg:flex-1">
+                    <div class="absolute left-0 top-0 w-14 h-16 flex items-center justify-center text-primary pointer-events-none">
+                        <span class="material-symbols-outlined leading-none!">home_work</span>
+                    </div>
+                    <select
+                        class="w-full h-16 pl-14 pr-10 bg-gray-50 border-0 focus:ring-2 focus:ring-primary/20 text-slate-900 font-semibold rounded-2xl appearance-none cursor-pointer"
+                        [value]="searchState"
+                        (change)="searchState = $any($event.target).value">
+                        <option value="">Any State</option>
+                        <option value="Dubai">Dubai</option>
+                        <option value="Abu_Dhabi">Abu Dhabi</option>
+                        <option value="Sharjah">Sharjah</option>
+                        <option value="Ajman">Ajman</option>
+                        <option value="Umm_Al_Quwain">Umm Al Quwain</option>
+                        <option value="Ras_Al_Khaimah">Ras Al Khaimah</option>
+                        <option value="Fujairah">Fujairah</option>
+                    </select>
+                    <div class="absolute right-4 top-0 h-16 flex items-center pointer-events-none text-slate-400">
+                        <!-- <span class="material-symbols-outlined text-xl leading-none!">expand_more</span> -->
+                    </div>
+                </div>
+
+                <div class="relative w-full lg:flex-1">
+                    <div class="absolute left-0 top-0 w-14 h-16 flex items-center justify-center text-primary pointer-events-none">
+                        <span class="material-symbols-outlined leading-none!">payments</span>
+                    </div>
+                    <select
+                        class="w-full h-16 pl-14 pr-10 bg-gray-50 border-0 focus:ring-2 focus:ring-primary/20 text-slate-900 font-semibold rounded-2xl appearance-none cursor-pointer"
+                        [value]="searchPrice"
+                        (change)="searchPrice = $any($event.target).value">
+                        <option value="0">Any Price</option>
+                        <option value="1000000">1M AED</option>
+                        <option value="3000000">3M AED</option>
+                        <option value="10000000">10M AED</option>
+                        <option value="50000000">50M+ AED</option>
+                    </select>
+                    <div class="absolute right-4 top-0 h-16 flex items-center pointer-events-none text-slate-400">
+                        <!-- <span class="material-symbols-outlined text-xl leading-none!">expand_more</span> -->
+                    </div>
+                </div>
+
+                <button
+                    class="w-full lg:w-auto h-16 px-10 bg-primary hover:bg-primary-dark text-white text-lg font-bold rounded-2xl shadow-lg shadow-primary/25 transition-all transform active:scale-95 flex items-center justify-center gap-2 whitespace-nowrap"
+                    (click)="onSearch()">
+                    Search
+                </button>
+            </div>
+
+            <div class="hidden md:flex flex-wrap items-center gap-4 mt-4 px-2">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Popular:</span>
+                <button class="text-sm text-slate-600 hover:text-primary font-medium transition-colors">Downtown Dubai</button>
+                <button class="text-sm text-slate-600 hover:text-primary font-medium transition-colors">Palm Jumeirah</button>
+                <button class="text-sm text-slate-600 hover:text-primary font-medium transition-colors">Dubai Marina</button>
+                <button class="text-sm text-slate-600 hover:text-primary font-medium transition-colors">Business Bay</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full bg-white/10 backdrop-blur-md border-t border-white/10 py-4 z-20 absolute bottom-0">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-2 opacity-90">
+                    <span class="material-symbols-outlined text-white">verified_user</span>
+                    <span class="text-white text-sm font-medium">RERA Registered #12934</span>
+                </div>
+                <div class="hidden md:flex items-center gap-2 opacity-90">
+                    <span class="material-symbols-outlined text-white">award_star</span>
+                    <span class="text-white text-sm font-medium">Award Winning Agency</span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <div class="text-white text-sm font-medium">Trusted by 10,000+ Investors</div>
+                <div class="flex -space-x-3">
+                    <img alt="User" class="w-8 h-8 rounded-full border-2 border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoGhVoLEnWrqqcm1QZM9et_0GU7dW1OP1NBJoFxoPc-4GPFG0y-8uXKlHaiAqCwaFrTjD43nccN7IQQtiesAvA3ZxGgJzljpboD8OrfiJRcBLfQAE2uUn1-5iqpAr4NqwSs1tJU5wlep8H5xIGGvQxANqKwGttihvYIUVu5eShyZc73HKuLwIEi1u5-6daioUjl9ux8tFyUIansmePJlvu4IkkvpOay8rXxRlXt0OaBUj0UHMtz3ClF4DqFqJwsm1xNXnX4TzBOZKO" />
+                    <img alt="User" class="w-8 h-8 rounded-full border-2 border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXe8tJ7QeEljbx5dYlIgVnFel4Wp7DvHOngkhfRh_4iI0k7MwK1KbRPcdZxvZYt5CkD9chm8tEtlxIKnRqFY0eTscdChLZR2f5m0e0L9CRtM8q6S9lKOxGDl0dWJjl99gqgohkg-P_TFcmIiX3vZ2zfawbl9-NeM41gmkDuGFbqLY0bvnIswqH0LSNyuSzmdkmcvC0T982SIDLlLExSUN7MwQWiGviWR8QuEax2_dVPjCi3jqDxaJcpcyk8nCQL_wGZWgA5ZqU94Ks" />
+                    <img alt="User" class="w-8 h-8 rounded-full border-2 border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8D4uiKC9SswRZGDCBnBMpWhK8BvEPCZBdEZkB-grus3b25TYgbXW3WARtV9wmUl7J97BUIVz9vb8ujQs3-Mha45vavSKbZeEP1L8CnzCVk-FDbOPEB7oJesGJWQuXy1_ESNKV41AB_R0Yz-DWhfmRQ6vbRtfSQxpvyiZYmo4TvfXhoEhyvpkopNkxchN3eDhGPMiMbMSDqmzAnKmWUn27WCLAllGY9GfzAxiu8jLPPnMbfTuCBFK_iHEUKQt639eQbDg0RD5kWfsQ" />
+                    <div class="w-8 h-8 rounded-full border-2 border-white/20 bg-primary flex items-center justify-center text-[10px] font-bold text-white">+2k</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
