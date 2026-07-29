@@ -1,0 +1,115 @@
+<div class="glass-panel h-full flex flex-col p-6 overflow-y-auto scrollbar-hide">
+
+    <!-- Header -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-bold text-white tracking-tight">Advanced Search</h2>
+        <p class="text-xs text-slate-400 uppercase tracking-widest mt-1">Prime Properties Dubai</p>
+    </div>
+
+    <!-- Search Input -->
+    <div class="relative mb-8">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 material-symbols-outlined">search</span>
+        <input
+            class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-white text-sm focus:ring-1 focus:ring-primary focus:border-primary placeholder-slate-500 outline-none transition-all"
+            placeholder="Location, Community, Project..." type="text" />
+    </div>
+
+    <!-- Property Type Buttons -->
+    <div class="mb-8">
+        <label class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 block">Property Type</label>
+        <div class="flex flex-wrap gap-2">
+            <button class="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold border border-primary/20">All
+                Types</button>
+            <button
+                class="px-4 py-2 rounded-full bg-white/5 text-slate-300 text-xs font-bold border border-white/10 hover:bg-white/10 transition-colors">Villa</button>
+            <button
+                class="px-4 py-2 rounded-full bg-white/5 text-slate-300 text-xs font-bold border border-white/10 hover:bg-white/10 transition-colors">Apartment</button>
+            <button
+                class="px-4 py-2 rounded-full bg-white/5 text-slate-300 text-xs font-bold border border-white/10 hover:bg-white/10 transition-colors">Penthouse</button>
+            <button
+                class="px-4 py-2 rounded-full bg-white/5 text-slate-300 text-xs font-bold border border-white/10 hover:bg-white/10 transition-colors">Townhouse</button>
+        </div>
+    </div>
+
+    <!-- Price Range -->
+    <div class="mb-8">
+        <div class="flex items-center justify-between mb-4">
+            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Price Range (AED)</label>
+            <span class="text-primary font-bold text-sm">2M - 50M+</span>
+        </div>
+        <input class="price-slider w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer" max="100" min="1"
+            type="range" value="40" />
+        <div class="flex justify-between mt-3 text-[10px] text-slate-500 font-bold uppercase">
+            <span>min</span>
+            <span>max</span>
+        </div>
+    </div>
+
+    <!-- Property Details -->
+    <div class="space-y-6">
+        <label class="text-xs font-bold text-slate-400 uppercase tracking-widest block">Details</label>
+        <div class="grid grid-cols-2 gap-4">
+            <!-- Bedrooms -->
+            <div>
+                <span class="text-[10px] text-slate-500 uppercase font-bold block mb-2">Bedrooms</span>
+                <div class="flex bg-white/5 rounded-xl p-1 border border-white/10">
+                    <button class="flex-1 py-2 text-xs font-bold text-white bg-white/10 rounded-lg">3+</button>
+                    <button class="flex-1 py-2 text-xs font-bold text-slate-500 hover:text-white">4+</button>
+                    <button class="flex-1 py-2 text-xs font-bold text-slate-500 hover:text-white">5+</button>
+                </div>
+            </div>
+
+            <!-- Bathrooms -->
+            <div>
+                <span class="text-[10px] text-slate-500 uppercase font-bold block mb-2">Bathrooms</span>
+                <div class="flex bg-white/5 rounded-xl p-1 border border-white/10">
+                    <button class="flex-1 py-2 text-xs font-bold text-white bg-white/10 rounded-lg">2+</button>
+                    <button class="flex-1 py-2 text-xs font-bold text-slate-500 hover:text-white">3+</button>
+                    <button class="flex-1 py-2 text-xs font-bold text-slate-500 hover:text-white">4+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Area -->
+        <div>
+            <span class="text-[10px] text-slate-500 uppercase font-bold block mb-2">Area (Sq Ft)</span>
+            <div class="grid grid-cols-2 gap-3">
+                <input
+                    class="bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:ring-primary focus:border-primary outline-none"
+                    placeholder="Min" type="number" />
+                <input
+                    class="bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:ring-primary focus:border-primary outline-none"
+                    placeholder="Max" type="number" />
+            </div>
+        </div>
+
+        <!-- Amenities -->
+        <div>
+            <span class="text-[10px] text-slate-500 uppercase font-bold block mb-2">Amenities</span>
+            <div class="grid grid-cols-2 gap-2">
+                <label class="flex items-center gap-2 cursor-pointer group">
+                    <div
+                        class="w-4 h-4 rounded bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary">
+                        <span class="material-symbols-outlined text-xs text-primary hidden">check</span>
+                    </div>
+                    <span class="text-xs text-slate-400">Private Pool</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer group">
+                    <div class="w-4 h-4 rounded bg-primary border border-primary flex items-center justify-center">
+                        <span class="material-symbols-outlined text-xs text-white">check</span>
+                    </div>
+                    <span class="text-xs text-slate-200">Beach Access</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="mt-auto pt-8">
+        <button
+            class="w-full bg-primary hover:bg-primary-hover text-white py-4 rounded-2xl font-bold text-sm shadow-glow transition-all active:scale-[0.98]">
+            Show 142 Results
+        </button>
+    </div>
+
+</div>
