@@ -1,0 +1,76 @@
+<div class="flex-1 overflow-x-auto p-6 md:p-8">
+    @if (loading()) {
+    <div class="rounded-2xl border border-slate-200 bg-white px-6 py-8 text-sm font-semibold text-slate-600 shadow-soft">
+        Loading leads...
+    </div>
+    }
+
+    @if (errorMessage()) {
+    <div class="mb-4 rounded-2xl border border-rose-200 bg-rose-50 px-6 py-4 text-sm text-rose-700">
+        <p>{{ errorMessage() }}</p>
+        <button
+            type="button"
+            (click)="loadLeadBoard()"
+            class="mt-2 rounded-lg bg-rose-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-rose-700 transition-colors">
+            Retry
+        </button>
+    </div>
+    }
+
+    <div class="space-x-6 flex items-start">
+        @for (column of stageColumns(); track trackStage($index, column)) {
+        <div class="shrink-0 w-80 flex flex-col h-full">
+            <div class="flex items-center justify-between mb-4 px-1">
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full" [style.background-color]="column.palette.dot"></div>
+                    <h3 class="text-sm font-bold text-slate-700 uppercase tracking-wider">{{ column.name }}</h3>
+                    <span class="bg-slate-200 text-slate-600 text-[10px] font-bold px-2 py-0.5 rounded-full">{{
+                        column.leads.length }}</span>
+                </div>
+            </div>
+
+            <div class="space-y-4 overflow-y-auto scrollbar-hide pb-10">
+                @if (column.leads.length === 0) {
+                <div class="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-4 text-center text-xs font-semibold text-slate-500">
+                    No leads in this stage
+                </div>
+                }
+
+                @for (lead of column.leads; track trackLead($index, lead)) {
+                <div class="bg-white rounded-xl p-4 shadow-soft border border-slate-100 hover:border-primary/30 transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <span
+                            class="text-[10px] font-bold px-2 py-0.5 rounded-md"
+                            [style.background-color]="column.palette.badgeBackground"
+                            [style.color]="column.palette.badgeText"
+                        >{{ column.name }}</span>
+                        <span class="text-[10px] font-medium text-slate-400">ID #{{ lead.id }}</span>
+                    </div>
+
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="h-10 w-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-600">
+                            {{ getInitials(lead.name) }}
+                        </div>
+                        <div class="min-w-0">
+                            <h4 class="text-sm font-bold text-slate-900 truncate">{{ lead.name }}</h4>
+                            <p class="text-xs text-slate-500 truncate">{{ lead.email }}</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1 border-t border-slate-100 pt-3">
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-tight">Phone</p>
+                        <p class="text-xs font-semibold text-slate-700">{{ lead.phone }}</p>
+                    </div>
+
+                    <div class="space-y-1 mt-3">
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-tight">Last Contact</p>
+                        <p class="text-xs font-semibold text-slate-700">{{ formatLastContact(lead.lastContact) }}</p>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+        }
+    </div>
+</div>
