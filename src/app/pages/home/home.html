@@ -1,0 +1,46 @@
+<!-- Page Wrapper -->
+<div class=" 
+         font-display
+         text-slate-900 dark:text-slate-100
+         antialiased
+         overflow-x-hidden
+         relative
+         selection:bg-primary selection:text-white">
+
+  <!-- Fixed Navbar -->
+  <app-nav-bar></app-nav-bar>
+
+  <!-- Main Content -->
+  <main class="
+      pt-16 sm:pt-20
+      flex flex-col
+      gap-16 sm:gap-24
+    ">
+    <!-- Hero -->
+    <section class="w-full">
+      <app-hero></app-hero>
+    </section>
+
+    <!-- Featured Collections -->
+    <section class="w-full max-w-[100vw] overflow-hidden">
+      <app-featured-collections></app-featured-collections>
+    </section>
+
+    <!-- Prime Locations -->
+    <section class="w-full bg-gray-50 dark:bg-slate-900">
+      <app-prime-location></app-prime-location>
+    </section>
+
+    <!-- Trusted by Investors -->
+    <section class="w-full">
+      <app-trusted-by-investors></app-trusted-by-investors>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-16 sm:mt-24">
+    <app-footer></app-footer>
+    <!-- <app-chatbot></app-chatbot> -->
+  </footer>
+
+</div>
