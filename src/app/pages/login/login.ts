@@ -1,0 +1,25 @@
+import { Component } from '@angular/core';
+import { FormsModule } from "@angular/forms";
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-login',
+  imports: [FormsModule],
+  templateUrl: './login.html',
+  styleUrl: './login.css',
+})
+export class Login {
+  constructor(private router: Router) {}
+
+  email: string = '';
+  password: string = '';
+  
+
+  login(){
+    alert('Login clicked!');
+    this.router.navigate(['/d']);
+
+  }
+
+
+}

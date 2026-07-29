@@ -1,0 +1,106 @@
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex items-center justify-center p-0 m-0 overflow-hidden">
+    <div class="relative flex w-full h-screen items-center justify-center overflow-hidden">
+        <img
+            alt="Dubai skyline background"
+            class="absolute inset-0 h-full w-full object-cover"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj792TTrAmOFikSqRA7sqxvYljej13S7anO9l1dDBPtierPadha1SRIIs&s=10" />
+        <div class="absolute inset-0 bg-linear-to-br from-slate-950/70 via-primary/45 to-slate-900/70"></div>
+
+        <div class="relative z-10 w-full h-full flex items-center justify-center p-6 lg:p-10">
+            <div class="w-full max-w-[520px]" >
+                <div class="w-full max-w-[460px] rounded-3xl border border-slate-200/70 bg-white/90 p-8 shadow-[0_20px_55px_-22px_rgba(15,23,42,0.45)] backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/80 space-y-8">
+                    <button
+                        class="mb-2 inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white/70 dark:bg-slate-900/60 px-3 py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/70 transition-all"
+                        onclick="history.back()"
+                        type="button">
+                        <span class="material-symbols-outlined text-base">arrow_back</span>
+                        Back
+                    </button>
+                    <div class="space-y-2">
+                        <p class="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/8 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
+                            <span class="material-symbols-outlined text-sm">verified_user</span>
+                            Secure Portal
+                        </p>
+                        <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white">Welcome Back</h3>
+                        <p class="text-slate-500 dark:text-slate-400">Enter your credentials to access your portfolio dashboard</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button
+                            class="flex items-center justify-center gap-2 py-3 border border-slate-200 dark:border-slate-800 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all group hover:-translate-y-0.5 font-semibold text-slate-700 dark:text-slate-200">
+                            <img alt="Google" class="w-5 h-5 group-hover:scale-110 transition-transform"
+                                data-alt="Google logo icon"
+                                src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" />
+                            <span>Google Sign In</span>
+                        </button>
+                        <button
+                            class="flex items-center justify-center gap-2 py-3 border border-slate-200 dark:border-slate-800 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all group hover:-translate-y-0.5 font-semibold text-slate-700 dark:text-slate-200">
+                            <img alt="Facebook" class="w-5 h-5 group-hover:scale-110 transition-transform"
+                                src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png" />
+                            <span>Facebook</span>
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center"><span
+                                class="w-full border-t border-slate-200 dark:border-slate-800"></span></div>
+                        <div class="relative flex justify-center text-xs uppercase"><span
+                                class="bg-white dark:bg-background-dark px-2 text-slate-400 font-medium tracking-wider">
+                                or continue with email</span></div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Email
+                                Address</label>
+                            <div class="relative">
+                                <span
+                                    class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">mail</span>
+                                <input
+                                    [(ngModel)]="email"
+                                    class="w-full pl-11 pr-4 py-4 bg-slate-50 dark:bg-slate-900 border-none rounded-xl focus:ring-2 focus:ring-primary/20 transition-all text-slate-900 dark:text-white placeholder:text-slate-400"
+                                    placeholder="name@company.com" type="email" />
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center ml-1">
+                                <label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Password</label>
+                                <a class="text-xs font-bold text-primary hover:underline" >Forgot password?</a>
+                            </div>
+                            <div class="relative">
+                                <span
+                                    class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">lock</span>
+                                <input
+                                    [(ngModel)]="password"
+                                    class="w-full pl-11 pr-12 py-4 bg-slate-50 dark:bg-slate-900 border-none rounded-xl focus:ring-2 focus:ring-primary/20 transition-all text-slate-900 dark:text-white placeholder:text-slate-400"
+                                    placeholder="••••••••" type="password" />
+                                <button
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                                    type="button">
+                                    <span class="material-symbols-outlined">visibility</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 ml-1">
+                            <input class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300"
+                                id="remember" type="checkbox" />
+                            <label class="text-sm text-slate-600 dark:text-slate-400" for="remember">Remember me for 30
+                                days</label>
+                        </div>
+                        <button
+                            (click)="login()"
+                            type="button"
+                            class="w-full bg-linear-to-r from-primary to-[#5b1d84] text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/25 hover:from-[#5b1d84] hover:to-primary hover:-translate-y-0.5 transition-all">
+                            Sign In
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-slate-500 dark:text-slate-400 text-sm">
+                            Don't have an account?
+                            <a class="text-primary font-bold hover:underline" href="#">Contact your advisor</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</body>
