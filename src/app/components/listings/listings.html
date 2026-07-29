@@ -1,0 +1,190 @@
+<main class="relative flex min-w-0 flex-1 flex-col overflow-hidden bg-background-light">
+    <div class="flex-1 overflow-y-auto p-6 scroll-smooth md:p-8">
+        <div class="mx-auto max-w-7xl space-y-6">
+            <div class="flex flex-wrap items-center gap-4 rounded-2xl border border-slate-100 bg-white p-5 shadow-soft">
+                <div class="min-w-50 flex-1">
+                    <label class="mb-1 ml-1 block text-[10px] font-bold uppercase tracking-widest text-slate-400">Search Properties</label>
+                    <div class="relative">
+                        <span class="material-symbols-outlined absolute left-3 top-2.5 text-[18px] text-slate-400">search</span>
+                        <input
+                            class="h-10 w-full rounded-xl border-slate-200 bg-slate-50/50 pl-10 pr-4 text-sm focus:border-primary focus:ring-primary/20"
+                            placeholder="By name, ID or address..."
+                            type="text" />
+                    </div>
+                </div>
+                <div class="w-48">
+                    <label class="mb-1 ml-1 block text-[10px] font-bold uppercase tracking-widest text-slate-400">Property Type</label>
+                    <select class="h-10 w-full rounded-xl border-slate-200 bg-slate-50/50 text-sm focus:border-primary focus:ring-primary/20">
+                        <option>All Types</option>
+                        <option>Villas</option>
+                        <option>Penthouses</option>
+                        <option>Apartments</option>
+                        <option>Townhouses</option>
+                    </select>
+                </div>
+                <div class="w-48">
+                    <label class="mb-1 ml-1 block text-[10px] font-bold uppercase tracking-widest text-slate-400">Area / Community</label>
+                    <select class="h-10 w-full rounded-xl border-slate-200 bg-slate-50/50 text-sm focus:border-primary focus:ring-primary/20">
+                        <option>All Areas</option>
+                        <option>Palm Jumeirah</option>
+                        <option>Downtown Dubai</option>
+                        <option>Dubai Marina</option>
+                        <option>Emirates Hills</option>
+                    </select>
+                </div>
+                <div class="w-40">
+                    <label class="mb-1 ml-1 block text-[10px] font-bold uppercase tracking-widest text-slate-400">Price Range</label>
+                    <select class="h-10 w-full rounded-xl border-slate-200 bg-slate-50/50 text-sm focus:border-primary focus:ring-primary/20">
+                        <option>Any Price</option>
+                        <option>AED 1M - 5M</option>
+                        <option>AED 5M - 15M</option>
+                        <option>AED 15M+</option>
+                    </select>
+                </div>
+                <div class="self-stretch pt-5">
+                    <button class="flex h-10 items-center gap-2 rounded-xl border border-slate-200 px-4 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50">
+                        <span class="material-symbols-outlined text-lg">tune</span>
+                        More
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-100 bg-white px-5 py-4 shadow-soft">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-[0.3em] text-slate-400">Property pages</p>
+                    <p class="mt-1 text-sm font-medium text-slate-600">{{ pageSummary() }}</p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2">
+                    <button
+                        class="inline-flex h-10 items-center justify-center rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+                        [disabled]="!hasPreviousPage() || loading()"
+                        (click)="previousPage()">
+                        Previous
+                    </button>
+
+                    <div class="flex items-center gap-2">
+                        @for (page of pageNumbers(); track page) {
+                        <button
+                            class="h-10 min-w-10 rounded-xl border px-3 text-sm font-semibold transition-colors"
+                            [class.border-primary]="page === currentPage()"
+                            [class.bg-primary]="page === currentPage()"
+                            [class.text-white]="page === currentPage()"
+                            [class.border-slate-200]="page !== currentPage()"
+                            [class.text-slate-600]="page !== currentPage()"
+                            [class.hover:bg-slate-50]="page !== currentPage()"
+                            [disabled]="loading()"
+                            (click)="goToPage(page)">
+                            {{ page + 1 }}
+                        </button>
+                        }
+                    </div>
+
+                    <button
+                        class="inline-flex h-10 items-center justify-center rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+                        [disabled]="!hasNextPage() || loading()"
+                        (click)="nextPage()">
+                        Next
+                    </button>
+                </div>
+            </div>
+
+            @if (errorMessage()) {
+            <div class="rounded-2xl border border-rose-200 bg-rose-50 px-5 py-4 text-sm font-medium text-rose-700">
+                {{ errorMessage() }}
+            </div>
+            }
+
+            <div class="overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-soft">
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse text-left">
+                        <thead>
+                            <tr class="border-b border-slate-50">
+                                <th class="bg-slate-50/30 px-6 py-4 text-[11px] font-bold uppercase tracking-widest text-slate-400">Property</th>
+                                <th class="bg-slate-50/30 px-6 py-4 text-[11px] font-bold uppercase tracking-widest text-slate-400">Location</th>
+                                <th class="bg-slate-50/30 px-6 py-4 text-[11px] font-bold uppercase tracking-widest text-slate-400">Status</th>
+                                <th class="bg-slate-50/30 px-6 py-4 text-[11px] font-bold uppercase tracking-widest text-slate-400">Details</th>
+                                <th class="bg-slate-50/30 px-6 py-4 text-[11px] font-bold uppercase tracking-widest text-slate-400">Price</th>
+                                <th class="bg-slate-50/30 px-6 py-4 text-right text-[11px] font-bold uppercase tracking-widest text-slate-400">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-50">
+                            @if (loading()) {
+                            <tr>
+                                <td class="px-6 py-16 text-center text-sm text-slate-500" colspan="6">Loading properties...</td>
+                            </tr>
+                            } @else if (properties().length === 0) {
+                            <tr>
+                                <td class="px-6 py-16 text-center text-sm text-slate-500" colspan="6">No properties found for this page.</td>
+                            </tr>
+                            } @else {
+                            @for (property of properties(); track property.id) {
+                            <tr class="group transition-colors hover:bg-slate-50/50">
+                                <td class="px-6 py-5">
+                                    <div class="flex items-center gap-4">
+                                        <div class="h-14 w-20 shrink-0 overflow-hidden rounded-lg border border-slate-100 shadow-sm">
+                                            <img
+                                                [alt]="property.name"
+                                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                                [src]="property.url" />
+                                        </div>
+                                        <div>
+                                            <h4 class="max-w-50 truncate text-sm font-bold text-slate-900">{{ property.name }}</h4>
+                                            <p class="text-[11px] font-medium text-slate-500">Ref: PS-{{ property.id }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-5">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="material-symbols-outlined text-sm text-primary">location_on</span>
+                                        <span class="text-sm font-medium text-slate-600">{{ property.state }}</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-5">
+                                    <span class="inline-flex items-center rounded-full border border-slate-200 bg-slate-100 px-2.5 py-1 text-[11px] font-bold text-slate-600">
+                                        {{ statusLabel(property.status) }}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-5">
+                                    <div class="flex items-center gap-3 text-slate-500">
+                                        <div class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">bed</span>
+                                            <span class="text-xs font-semibold">{{ property.minBedCount }}-{{ property.maxBedCount }}</span>
+                                        </div>
+                                        <div class="flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm">square_foot</span>
+                                            <span class="text-xs font-semibold">{{ formatSquareFeet(property.sqft) }} sqft</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-5">
+                                    <div class="text-sm font-bold text-slate-900">{{ formatPrice(property.price) }}</div>
+                                    <div class="text-[10px] font-medium uppercase text-slate-400">{{ property.dsc }}</div>
+                                </td>
+                                <td class="px-6 py-5 text-right">
+                                    <div class="flex justify-end gap-2">
+                                        <a
+                                            class="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition-all hover:border-primary hover:bg-primary hover:text-white"
+                                            [routerLink]="['/property', property.id]"
+                                            aria-label="View property details">
+                                            <span class="material-symbols-outlined text-lg">visibility</span>
+                                        </a>
+                                        <button class="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition-all hover:bg-slate-100" type="button">
+                                            <span class="material-symbols-outlined text-lg">more_vert</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+
+    
+</main>
