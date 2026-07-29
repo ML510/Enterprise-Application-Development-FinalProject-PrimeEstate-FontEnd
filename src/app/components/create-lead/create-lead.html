@@ -1,0 +1,77 @@
+<section class="mx-auto w-full max-w-4xl rounded-2xl border border-slate-100 bg-white p-6 shadow-soft">
+  <div class="mb-6 flex flex-col gap-1">
+    <h2 class="text-2xl font-bold text-slate-900">Create New Lead</h2>
+    <p class="text-sm text-slate-500">Capture a lead profile and contact status.</p>
+  </div>
+
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+    <label class="flex flex-col gap-2">
+      <span class="text-xs font-semibold uppercase tracking-wide text-slate-600">ID</span>
+      <input [(ngModel)]="lead.id" name="id" type="number" class="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none transition focus:border-primary" placeholder="1001" />
+    </label>
+
+    <label class="flex flex-col gap-2">
+      <span class="text-xs font-semibold uppercase tracking-wide text-slate-600">Name *</span>
+      <input [(ngModel)]="lead.name" name="name" type="text" class="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none transition focus:border-primary" placeholder="Sarah Jenkins" />
+      @if (hasNameError()) {
+        <span class="text-xs font-medium text-red-600">Name is required.</span>
+      }
+    </label>
+
+    <label class="flex flex-col gap-2">
+      <span class="text-xs font-semibold uppercase tracking-wide text-slate-600">Email *</span>
+      <input [(ngModel)]="lead.email" name="email" type="email" class="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none transition focus:border-primary" placeholder="sarah@example.com" />
+      @if (hasEmailError()) {
+        <span class="text-xs font-medium text-red-600">Enter a valid email address.</span>
+      }
+    </label>
+
+    <label class="flex flex-col gap-2">
+      <span class="text-xs font-semibold uppercase tracking-wide text-slate-600">Phone *</span>
+      <input [(ngModel)]="lead.phone" name="phone" type="tel" class="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none transition focus:border-primary" placeholder="+971 50 123 4567" />
+      @if (hasPhoneError()) {
+        <span class="text-xs font-medium text-red-600">Enter a valid phone number.</span>
+      }
+    </label>
+
+    <label class="flex flex-col gap-2">
+      <span class="text-xs font-semibold uppercase tracking-wide text-slate-600">Stage *</span>
+      <select [(ngModel)]="lead.stage" name="stage" class="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none transition focus:border-primary">
+        <option value="" disabled>Select stage</option>
+        @for (stage of stageOptions; track stage) {
+          <option [value]="stage">{{ stage }}</option>
+        }
+      </select>
+      @if (hasStageError()) {
+        <span class="text-xs font-medium text-red-600">Stage is required.</span>
+      }
+    </label>
+
+    <label class="flex flex-col gap-2 md:col-span-2">
+      <span class="text-xs font-semibold uppercase tracking-wide text-slate-600">Profile Picture *</span>
+      <input type="file" accept="image/*" (change)="onProfilePicked($event)" class="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none transition file:mr-4 file:rounded-md file:border-0 file:bg-slate-100 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-slate-700 hover:file:bg-slate-200" />
+      @if (hasProfilePicError()) {
+        <span class="text-xs font-medium text-red-600">Profile picture is required.</span>
+      }
+    </label>
+
+    <div class="md:col-span-2 rounded-xl border border-dashed border-slate-200 bg-slate-50 p-3">
+      @if (profilePreviewUrl()) {
+        <img [src]="profilePreviewUrl()!" alt="Lead profile preview" class="h-48 w-full rounded-lg object-cover" />
+      } @else {
+        <div class="flex h-40 items-center justify-center rounded-lg bg-white text-sm font-medium text-slate-400">Profile preview will appear here</div>
+      }
+    </div>
+
+    <div class="md:col-span-2 mt-2 flex flex-wrap gap-3">
+      <button (click)="submit()" class="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-hover">Create Lead</button>
+      <button type="button" (click)="cancel()" class="rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Cancel</button>
+    </div>
+
+    @if (formErrorMessage) {
+      <p class="md:col-span-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+        {{ formErrorMessage }}
+      </p>
+    }
+  </div>
+</section>
