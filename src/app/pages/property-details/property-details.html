@@ -1,0 +1,209 @@
+<div class="property-details-page min-h-screen bg-background text-on-background antialiased">
+  <nav class="property-details-nav fixed top-0 z-50 w-full border-b border-white/10 bg-white/95 backdrop-blur-md shadow-sm dark:bg-slate-950/95">
+    <div class="flex h-20 w-full">
+      <app-nav-bar></app-nav-bar>
+    </div>
+  </nav>
+
+  <div *ngIf="loading" class="flex items-center justify-center min-h-screen">
+    <div class="spinner"></div>
+  </div>
+
+  <main class="pt-20" *ngIf="!loading">
+    <section class="relative h-[500px] w-full overflow-hidden md:h-[600px] lg:h-[650px]">
+      <img class="absolute inset-0 h-full w-full object-cover" [src]="property.url" [alt]="property.name" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+
+      <div class="absolute bottom-0 left-0 flex w-full flex-col items-end justify-between gap-8 p-8 md:flex-row md:p-16">
+        <div class="max-w-4xl text-white">
+          <h1 class="mb-4 text-5xl font-extrabold tracking-tighter md:text-7xl">
+            {{ property.name }}
+          </h1>
+          <p class="mb-6 text-xl font-light opacity-90 md:text-2xl">
+            {{ property.state }}
+          </p>
+          <div class="flex flex-wrap gap-6 text-lg font-medium">
+            <span class="flex items-center gap-2"><span class="material-symbols-outlined">bed</span>{{ property.maxBedCount }} Bedrooms</span>
+            <span class="flex items-center gap-2"><span class="material-symbols-outlined">square_foot</span>{{ property.sqft | number:'1.0-0' }} sqft</span>
+            <span class="flex items-center gap-2"><span class="material-symbols-outlined">verified</span>{{ property.status }}</span>
+          </div>
+        </div>
+
+        <div class="flex w-full flex-col gap-4 md:w-auto">
+          <div class="text-right text-white">
+            <span class="block text-sm font-bold uppercase tracking-widest opacity-70">Starting from</span>
+            <span class="text-4xl font-extrabold">{{ formatPrice(property.price) }}</span>
+          </div>
+
+          <div class="flex gap-4">
+            <button type="button" (click)="openArrangeView()" class="flex-1 rounded-full border border-white/30 bg-white/20 px-8 py-4 text-lg font-bold text-white backdrop-blur-md transition-all active:scale-95 hover:bg-white/30 md:flex-none">
+              Arrange Viewing
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto -mt-12 max-w-7xl px-6 sm:px-8 relative z-10">
+      <div class="glass-panel flex flex-wrap items-center justify-between gap-8 rounded-3xl p-8 shadow-xl">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">apartment</span>
+          </div>
+          <div>
+            <p class="feature-label">Property Type</p>
+            <p class="feature-value">{{ property.state }}</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bed</span>
+          </div>
+          <div>
+            <p class="feature-label">Bedrooms</p>
+            <p class="feature-value">{{ property.minBedCount }} - {{ property.maxBedCount }}</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">square_foot</span>
+          </div>
+          <div>
+            <p class="feature-label">Built Area</p>
+            <p class="feature-value">{{ property.sqft | number:'1.0-0' }} sf</p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">location_on</span>
+          </div>
+          <div>
+            <p class="feature-label">Location</p>
+            <p class="feature-value">{{ property.state }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 py-20 sm:px-8 lg:grid-cols-3">
+      <div class="lg:col-span-2">
+        <h2 class="mb-8 text-4xl font-extrabold tracking-tight">About This Property</h2>
+        
+        <div class="rounded-2xl bg-gradient-to-br from-primary/5 to-primary/2 border border-primary/10 p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0">
+              <span class="material-symbols-outlined text-3xl text-primary">description</span>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-slate-900 mb-3">Property Overview</h3>
+              <p class="text-base leading-relaxed text-slate-700">{{ property.dsc }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6 text-lg font-medium leading-relaxed text-secondary">
+          <p>Designed for modern luxury living, this property combines premium materials, generous proportions, and a highly desirable setting.</p>
+        </div>
+
+        <div class="mt-16">
+          <h3 class="mb-8 text-2xl font-bold">Premium Amenities</h3>
+          <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+            <div class="amenity-card">
+              <span class="material-symbols-outlined amenity-icon">pool</span>
+              <span class="amenity-label">Private Pool</span>
+            </div>
+            <div class="amenity-card">
+              <span class="material-symbols-outlined amenity-icon">home_iot_device</span>
+              <span class="amenity-label">Smart Home</span>
+            </div>
+            <div class="amenity-card">
+              <span class="material-symbols-outlined amenity-icon">visibility</span>
+              <span class="amenity-label">Sea View</span>
+            </div>
+            <div class="amenity-card">
+              <span class="material-symbols-outlined amenity-icon">fitness_center</span>
+              <span class="amenity-label">Private Gym</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="space-y-8">
+        <div class="rounded-3xl bg-slate-100 p-8 shadow-sm dark:bg-slate-900">
+          <div class="flex flex-col items-center text-center">
+            <div class="advisor-avatar mb-6">
+              <img
+                class="h-full w-full object-cover"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrVMBnlqECAW1RiVg9egOo_9wzVOuw6DYlgyatd84C35abwubQRVowDYULLtiFizTZudWKmIHD0eo9h5JtF7lWDXPOX8ygUtjVgyq34uwNemdcsy6kgzRfLOjc7jhXXAsNbTG7bWaEeFSVp0cDTW5e0nsg7BwQyefNSoTLQvntgZRTfaGwX_jNBmDIhwUTUS9STh8uMi2WHkaT_DJ5cggAahX3OsFWNOJaVGr8Z3_qXRKIXPTiJMGhk42FwmgpG_NxLWKa5CK32ji5"
+                alt="Real estate advisor"
+              />
+            </div>
+            <h4 class="mb-1 text-2xl font-extrabold">Julian Montgomery</h4>
+            <p class="mb-6 text-sm font-bold uppercase tracking-widest text-primary">Principal Advisor</p>
+            <div class="w-full space-y-3">
+              <button class="advisor-button primary">Call Agent</button>
+              <button class="advisor-button secondary" (click)="whatsapp()">WhatsApp</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-3xl bg-primary/5 p-8">
+          <h5 class="mb-4 font-bold">Investment Insights</h5>
+          <p class="mb-4 text-sm leading-relaxed text-secondary">
+            This property has seen strong demand and remains a compelling long-term asset in a premium location.
+          </p>
+          <button type="button" (click)="download()" class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:underline">
+            Download Brochure
+            <span class="material-symbols-outlined text-sm">download</span>
+          </button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="bg-surface-container-low py-20">
+      <div class="mx-auto max-w-7xl px-6 sm:px-8">
+        <div class="mb-12 flex items-end justify-between">
+          <h2 class="text-4xl font-extrabold tracking-tight">Related Collections</h2>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <a
+            (click)="scrollToTop()"
+            *ngFor="let similar of similarProperties"
+            class="group cursor-pointer"
+            [routerLink]="['/property', similar.id]"
+            
+          >
+            <div class="relative mb-6 aspect-[4/3] overflow-hidden rounded-3xl shadow-lg">
+              <img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" [src]="similar.url" [alt]="similar.name" />
+              <div class="absolute right-4 top-4 rounded-full bg-white/90 px-4 py-2 text-xs font-bold uppercase tracking-widest text-primary backdrop-blur-md">
+                Featured
+              </div>
+            </div>
+            <h4 class="mb-2 text-xl font-bold">{{ similar.name }}</h4>
+            <p class="mb-4 text-sm text-secondary">{{ similar.state }}</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xl font-extrabold text-primary">{{ similar.price | currency:'USD':'symbol' }}</span>
+              <div class="flex gap-4 text-xs font-bold text-slate-400">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">bed</span> {{ similar.minBedCount }}</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">square_foot</span> {{ similar.sqft | number:'1.0-0' }}</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div *ngIf="isArrangeViewOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4" (click)="closeArrangeView()">
+    <div class="max-h-[90vh] w-full max-w-2xl overflow-y-auto" (click)="$event.stopPropagation()">
+      <app-arrange-view [propertyName]="property.name" (closed)="closeArrangeView()"></app-arrange-view>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+  
+</div>
